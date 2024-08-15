@@ -1,9 +1,8 @@
-const IMAGE_URL = "https://placehold.co/200";
-
 const users = [
     {
         id: 1,
-        userName: 'User1',
+        userName: 'Kurt',
+        imageUrl: "https://placehold.co/400",
         description: 'lorem ipsum',
         age: 46,
         favMusic: {
@@ -12,7 +11,8 @@ const users = [
     },
     {
         id: 2,
-        userName: 'User LastName',
+        userName: 'Morrison',
+        imageUrl: "https://placehold.co/400",
         description: 'Lorem lorem lorem',
         age: 23,
         favMusic: {
@@ -22,29 +22,42 @@ const users = [
 ]
 
 function createCard(user) {
+    const card = document.createElement('div');
+    card.className= 'card';
     
+
+const img= document.createElement("img");
+img.src= user.imageUrl;
+img.alt= user.userName;
+
+const title = document.createElement("h2");
+title.textContent = `${user.userName} - Nombre`;
+title.classList.add("card-title");
+
+const age = document.createElement("p");
+age.textContent = `Edad: ${user.age}`;;
+
+const id= document.createElement('h4');
+id.textContent = ` ID ${user.id}`;
+
+const description = document.createElement('p');
+description.textContent= user.description;
+
+const bandas = document.createElement('p');
+bandas.textContent = ` Música favorita: ${user.favMusic.bands.join (',')}`;
+
+
+card.appendChilds(img, title, age, id, description, bandas);
+
+return card;
 }
-//Selectores
-const card = document.getElementById("card-container");
-const cardImgContainer = document.getElementById("card-img-container");
 
-//Crear elemento img
-const imageElement= document.createElement("img");
-imageElement.src = IMAGE_URL;
-imageElement.alt = "User profile photo";
+document.addEventListener('DOMContentLoaded', ()=> {
+    const container = document.getElementById('card-container');
+    users.forEach(user => {
+        const card = createCard(user);
+        container.appendChild(card)
+});
 
 
-//creamos elemento titulo --> card
-const cardTitleElement = document.createElement("h3");
-cardTitleElement.classList.add("card-title");
-const cardAgeElement = document.createElement("p");
-const cardDescElement = document.createElement("p");
-
-//Poblar
-cardTitleElement.textContent = users.username;
-cardAgeElement.textContent = users.age;
-cardDescElement.textContent = users.description;
-
-//Renderizar
-cardImgContainer.appendChild(imageElement);
-card.append(cardTitleElement, cardAgeElement, cardDescElement);
+});

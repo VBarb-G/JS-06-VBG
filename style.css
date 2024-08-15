@@ -1,7 +1,14 @@
 body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    align-items: center;
 }
 
 .card-title {
-    color: rebeccapurple;
+    color: rgb(173, 58, 58);
+}
+
+.card {
+    text-align:center;
+    background-color: olive
+    
 }
